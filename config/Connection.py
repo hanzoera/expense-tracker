@@ -1,9 +1,11 @@
 import MySQLdb
 
-class Connection:
 
+class Connection:
     def __init__(self):
+        # store the active connection object
         self.connection = None
+        # configuration for connecting to the MySQL database
         self.config = {
             'host' : 'localhost',
             'user' : 'root',
@@ -13,13 +15,15 @@ class Connection:
 
     def connect(self):
         try:
-            if self.connection:
+            # check if connection already exists
+            if self.connection: 
                 print("Closing previous session...")
                 self.close()
 
             print("Creating new session...")
             self.connection = MySQLdb.connect(**self.config)
 
+            # check if connection with the database is open
             if self.connection.open:
                 print("Database successfully connected...")
                 self.connection.autocommit(True)
@@ -33,4 +37,8 @@ class Connection:
             print(f"Error Code: {error.args[0]}")
             print(f"Message: {error.args[1]}")
 
-    
+    def close(self):
+        if self.connection and self.connection.open:
+            self.connection.close()
+        else:
+            print("There is no connection to close.")

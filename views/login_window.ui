@@ -26,7 +26,7 @@
       <x>10</x>
       <y>100</y>
       <width>381</width>
-      <height>90</height>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
@@ -106,7 +106,7 @@
       <number>10</number>
      </property>
      <item>
-      <widget class="QPushButton" name="btn_login">
+      <widget class="QPushButton" name="loginBtn">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -126,10 +126,9 @@
         <string notr="true">QPushButton {
 	padding: 8px;
 	border-radius: 5px;
+	color: black;
 	background-color: rgb(39, 216, 133);
-}
-
-</string>
+}</string>
        </property>
        <property name="text">
         <string>Login</string>
@@ -137,7 +136,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="createAccountBtn">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -147,7 +146,7 @@
        <property name="font">
         <font>
          <family>Yu Gothic UI Semibold</family>
-         <pointsize>9</pointsize>
+         <pointsize>10</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -228,7 +227,7 @@
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLineEdit" name="lbl_password">
+      <widget class="QLineEdit" name="passwordInput">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>1</horstretch>
@@ -237,7 +236,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>-1</pointsize>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -247,7 +246,6 @@
     background: rgba(159, 159, 159, 60);
     color: #ddd;
 	padding: 0 5px;
-    font-size: 12px;
 }
 
 QLineEdit:focus {
@@ -267,7 +265,7 @@ QLineEdit:focus {
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLineEdit" name="lbl_username">
+      <widget class="QLineEdit" name="usernameInput">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>1</horstretch>
@@ -276,7 +274,7 @@ QLineEdit:focus {
        </property>
        <property name="font">
         <font>
-         <pointsize>-1</pointsize>
+         <pointsize>8</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -286,7 +284,6 @@ QLineEdit:focus {
     background: rgba(166, 166, 166, 60);
     color: #ddd;
 	padding: 0 5px;
-    font-size: 12px;
 }
 
 QLineEdit:focus {
@@ -317,52 +314,30 @@ QLineEdit:focus {
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="gridLayoutWidget_3">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>10</y>
       <width>381</width>
-      <height>93</height>
+      <height>81</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_4">
+    <layout class="QGridLayout" name="gridLayout">
      <property name="leftMargin">
-      <number>5</number>
+      <number>15</number>
      </property>
      <property name="topMargin">
       <number>10</number>
      </property>
      <property name="rightMargin">
-      <number>5</number>
+      <number>15</number>
      </property>
      <property name="bottomMargin">
       <number>10</number>
      </property>
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <item row="4" column="0">
-      <spacer name="verticalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>25</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="label_8">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_4">
        <property name="font">
         <font>
          <family>Segoe Print</family>
@@ -372,34 +347,18 @@ QLineEdit:focus {
         <string notr="true">color: rgb(69, 255, 162);</string>
        </property>
        <property name="text">
-        <string>Track you spendings. Make smart choice.</string>
+        <string>Track your spendings. Make smart choice</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
-     <item row="4" column="2">
-      <spacer name="verticalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>25</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="3" column="0" colspan="3">
-      <widget class="QLabel" name="label_9">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_3">
        <property name="font">
         <font>
-         <family>Work Sans ExtraLight</family>
+         <family>Bahnschrift</family>
          <pointsize>28</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -409,7 +368,7 @@ QLineEdit:focus {
         <string notr="true">color: rgb(69, 255, 162);</string>
        </property>
        <property name="text">
-        <string>EXPENSE TRACKER</string>
+        <string>Expense Tracker</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -431,8 +390,6 @@ QLineEdit:focus {
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources>
-  <include location="../media/media.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
