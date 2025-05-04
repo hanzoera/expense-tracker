@@ -9,7 +9,7 @@ class Login(QMainWindow):
         uic.loadUi("views/login_window.ui", self)
         # print(hasattr(self, "createAccountBtn"))
         # print(dir(self))
-        # self.loginBtn.clicked.connect(self.handleLogin)
+        self.loginBtn.clicked.connect(self.handleLogin)
         self.createAccountBtn.clicked.connect(self.openRegisterWindow)
     
     def handleLogin(self):
@@ -18,8 +18,8 @@ class Login(QMainWindow):
         password = self.passwordInput.text()
 
         # Checks if the user provide username and password
-        if not username or password:
-            QMessageBox.warning(self, "Please enter both your username and password.")
+        if not username or not password:
+            QMessageBox.warning(self, "Login Failure", "Please enter both your username and password.")
             return
         
         # 
@@ -30,5 +30,3 @@ class Login(QMainWindow):
         self.register_window = Register()
         self.register_window.show()
         self.close() # close the login window
-
-        

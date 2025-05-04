@@ -43,7 +43,7 @@
       <widget class="QLabel" name="label_10">
        <property name="font">
         <font>
-         <family>Work Sans</family>
+         <family>Segoe Fluent Icons</family>
          <pointsize>20</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -192,7 +192,7 @@ QLineEdit:focus {
       <widget class="QLabel" name="label_6">
        <property name="font">
         <font>
-         <family>Source Sans Pro</family>
+         <family>Segoe UI</family>
          <pointsize>11</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -210,7 +210,7 @@ QLineEdit:focus {
       <widget class="QLabel" name="label_3">
        <property name="font">
         <font>
-         <family>Source Sans Pro</family>
+         <family>Segoe UI</family>
          <pointsize>11</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -228,7 +228,7 @@ QLineEdit:focus {
       <widget class="QLabel" name="label_7">
        <property name="font">
         <font>
-         <family>Source Sans Pro</family>
+         <family>Segoe UI</family>
          <pointsize>11</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -390,7 +390,7 @@ QLineEdit:focus {
       <x>10</x>
       <y>10</y>
       <width>381</width>
-      <height>81</height>
+      <height>90</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_7">
