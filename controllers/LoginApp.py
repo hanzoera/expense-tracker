@@ -2,6 +2,8 @@ import sys
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
+from models.User import InnerUser
+
 class Login(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -22,8 +24,21 @@ class Login(QMainWindow):
             QMessageBox.warning(self, "Login Failure", "Please enter both your username and password.")
             return
         
-        # 
-        # pass onto model.user
+        # Create an instance of the user query handler class
+        user = InnerUser()
+        # Pass onto the method that mainly manages the logic for logging user account
+        is_login_successful = user.validateUserLogin(username, password)
+
+        # Indicates whether the login process was successful or not
+        if is_login_successful:
+            QMessageBox.information(self, "Login Successful!", "Welcome! Your account was successfully opened.")
+            self.usernameInput.clear()
+            self.passwordInput.clear()
+
+            # from controllers.ExpenseTableApp import 
+            # create expense app window object
+            # show the expense app window
+            # close the login window
         
     def openRegisterWindow(self):
         from controllers.RegisterApp import Register

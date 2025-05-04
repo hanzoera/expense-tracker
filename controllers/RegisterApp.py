@@ -45,7 +45,6 @@ class Register(QMainWindow):
         
         except Exception as error:
             print(f"Error Message: {error}")
-    
 
     def returnToLoginWindow(self):
         from controllers.LoginApp import Login
