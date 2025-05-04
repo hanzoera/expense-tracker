@@ -29,4 +29,4 @@ class Login(QMainWindow):
         from controllers.RegisterApp import Register
         self.register_window = Register()
         self.register_window.show()
-        self.close() # close the login window
+        self.close() # Close the login window

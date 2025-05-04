@@ -1,2 +1,5 @@
-# exclude python virtual environment
+# Virtual Environment
 venv/
+
+# Python Cache
+__pycache__/

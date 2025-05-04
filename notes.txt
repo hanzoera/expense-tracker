@@ -1,0 +1,29 @@
+# 🗂 Project Notes: Expense Tracker
+
+---
+
+📌 To-Do List
+- [ ] Add "Show Password" toggle icon
+- [ ] Connect login to MySQL verification
+- [ ] Set up a local expense storage after
+
+---
+
+🔧 Python Packages Used
+Package     Version
+----------- -------
+- bcrypt      4.3.0 - important for hashing password
+- mysqlclient 2.2.7
+- PyQt6       6.9.0
+- PyQt6-Qt6   6.9.0
+- PyQt6_sip   13.10.0
+
+---
+
+📝 Notes / Reminders
+- Use `hashed.decode("utf-8")` before storing password in MySQL.
+
+---
+
+👥 Group Members
+- 
