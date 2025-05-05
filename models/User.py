@@ -48,7 +48,7 @@ class InnerUser:
         
         try:
             cursor = database_conn.cursor()
-            sql_query = "SELECT username, password FROM users WHERE username = %s AND pasword = %s"
+            sql_query = "SELECT username, password FROM users WHERE username = %s AND password = %s"
             values = (username, password) # tuple value
             cursor.execute(sql_query, values)
             return True
