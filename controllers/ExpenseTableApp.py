@@ -22,6 +22,8 @@ class ExpenseTableApp(QMainWindow):
         current_date = datetime.now().strftime("%d-%m-%Y")
         self.datePurchase.setText(current_date)
     
+
+    # It inserts the inputs that you typed sa database.
     def saveEntryFunc(self):
         item = self.itemName.text() 
         category = self.itemCategory.currentText()
@@ -29,7 +31,7 @@ class ExpenseTableApp(QMainWindow):
         quantity = self.itemQuant.text()
         date = self.datePurchase.text()
 
-        #Input Validation For Inputs or Smth
+        #Input Validation For Inputs or Smth.
         if not item or not price or not quantity or not date:
             QMessageBox.warning(self, "Input Error", "Please fill in all fields.")
             return
@@ -55,6 +57,8 @@ class ExpenseTableApp(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Database Error", f"Failed to save entry to database.\n{e}")
 
+
+    # Clears the inputs that you typed.
     def clearEntryFunc(self):
         self.itemName.clear()
         self.itemCategory.setCurrentIndex(0)
@@ -62,6 +66,8 @@ class ExpenseTableApp(QMainWindow):
         self.itemQuant.clear()
         self.datePurchase.clear()
 
+
+    # Displays the records in the table.
     def load_expenses(self):
         try:
             db = DatabaseConnection()
