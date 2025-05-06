@@ -3,6 +3,7 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from models.User import InnerUser
+from controllers.ExpenseTableApp import ExpenseTableApp
 
 class Login(QMainWindow):
     def __init__(self):
@@ -35,10 +36,13 @@ class Login(QMainWindow):
             self.usernameInput.clear()
             self.passwordInput.clear()
 
-            # from controllers.ExpenseTableApp import 
-            # create expense app window object
-            # show the expense app window
-            # close the login window
+            self.expense_window = ExpenseTableApp()
+            self.expense_window.show()
+            self.close()
+            # from controllers.ExpenseTableApp import (Done by Juswen)
+            # create expense app window object (Done by Juswen)
+            # show the expense app window (Done by Juswen)
+            # close the login window (Done by Juswen)
         
     def openRegisterWindow(self):
         from controllers.RegisterApp import Register
