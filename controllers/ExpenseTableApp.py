@@ -43,6 +43,7 @@ class ExpenseTableApp(QMainWindow):
         table.setItem(self.rowCount, 4, QTableWidgetItem(date))
         self.rowCount += 1
 
+        
         try:
             db = DatabaseConnection()
             connection = db.connect()
