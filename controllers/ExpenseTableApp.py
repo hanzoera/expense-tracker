@@ -94,7 +94,7 @@ class ExpenseTableApp(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Load Error", f"Failed to load entries from database.\n{e}")
 
-
+#this is a main file
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = ExpenseTableApp()
