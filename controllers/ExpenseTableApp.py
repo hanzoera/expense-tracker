@@ -14,9 +14,9 @@ class ExpenseTableApp(QMainWindow):
         self.saveEntry.clicked.connect(self.saveEntryFunc)
         self.clearEntry.clicked.connect(self.clearEntryFunc)
 
-        self.itemCategory.addItems(["Utilities", "Transportion", "Food", "Entertainment", "Others"])
+        self.itemCategory.addItems(["Utilities", "Transportation", "Food", "Entertainment", "Others"])
 
-        self.rowCount = 0
+        self.load_expenses()
 
     def toCurrentDate(self):
         current_date = datetime.now().strftime("%d-%m-%Y")
@@ -34,16 +34,6 @@ class ExpenseTableApp(QMainWindow):
             QMessageBox.warning(self, "Input Error", "Please fill in all fields.")
             return
         
-        table = self.spendrecords
-        table.insertRow(self.rowCount)
-        table.setItem(self.rowCount, 0, QTableWidgetItem(str(self.rowCount + 1)))
-        table.setItem(self.rowCount, 1, QTableWidgetItem(category))
-        table.setItem(self.rowCount, 2, QTableWidgetItem(item))
-        table.setItem(self.rowCount, 3, QTableWidgetItem(quantity))
-        table.setItem(self.rowCount, 4, QTableWidgetItem(date))
-        self.rowCount += 1
-
-        #Saving the inputs to database
         try:
             db = DatabaseConnection()
             connection = db.connect()
@@ -59,7 +49,8 @@ class ExpenseTableApp(QMainWindow):
             db.close()
 
             QMessageBox.information(self, "Entry Saved", "Expense entry has been added to the database.")
-            self.clearEntry()
+            self.clearEntryFunc()
+            self.load_expenses()
 
         except Exception as e:
             QMessageBox.critical(self, "Database Error", f"Failed to save entry to database.\n{e}")
@@ -70,6 +61,33 @@ class ExpenseTableApp(QMainWindow):
         self.itemPrice.clear()
         self.itemQuant.clear()
         self.datePurchase.clear()
+
+    def load_expenses(self):
+        try:
+            db = DatabaseConnection()
+            connection = db.connect()
+            cursor = connection.cursor()
+
+            select_query = "SELECT id, category, item, quantity, date FROM expenses ORDER BY id DESC"
+            cursor.execute(select_query)
+            records = cursor.fetchall()
+
+            self.spendrecords.setRowCount(0)
+
+            for row_number, row_data in enumerate(records):
+                self.spendrecords.insertRow(row_number)
+                self.spendrecords.setItem(row_number, 0, QTableWidgetItem(str(row_number + 1)))  # Row number
+                self.spendrecords.setItem(row_number, 1, QTableWidgetItem(row_data[1]))  # category
+                self.spendrecords.setItem(row_number, 2, QTableWidgetItem(row_data[2]))  # item
+                self.spendrecords.setItem(row_number, 3, QTableWidgetItem(str(row_data[3])))  # quantity
+                self.spendrecords.setItem(row_number, 4, QTableWidgetItem(str(row_data[4])))  # date
+
+            cursor.close()
+            db.close()
+
+        except Exception as e:
+            QMessageBox.critical(self, "Load Error", f"Failed to load entries from database.\n{e}")
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
