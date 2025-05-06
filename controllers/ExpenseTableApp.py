@@ -6,20 +6,22 @@ from config.DatabaseConnection import DatabaseConnection
 from datetime import datetime
 
 class ExpenseTableApp(QMainWindow):
-    def __init__(self):
+    def __init__(self, user_id):
         super().__init__()
-        uic.load_ui("views/expense_tracker.ui", self)
+        # assign the logged-in user's ID as an instance variable to be use for SQL queries
+        self.user_id = user_id
 
+        uic.loadUi("views/expense_tracker.ui", self)
         self.curDate.clicked.connect(self.toCurrentDate)
         self.saveEntry.clicked.connect(self.saveEntryFunc)
         self.clearEntry.clicked.connect(self.clearEntryFunc)
 
-        self.itemCategory.addItems(["Utilities", "Transportation", "Food", "Entertainment", "Others"])
+        self.itemCategory.addItems(["Utilities", "Transportation", "Food & Drinks", "Entertainment", "Shopping", "Others"])
 
         self.load_expenses()
 
     def toCurrentDate(self):
-        current_date = datetime.now().strftime("%d-%m-%Y")
+        current_date = datetime.now().strftime("%Y-%m-%d")
         self.datePurchase.setText(current_date)
     
 
@@ -42,10 +44,10 @@ class ExpenseTableApp(QMainWindow):
             cursor = connection.cursor()
 
             insert_query = """
-                INSERT INTO expenses (category, item, quantity, date)
-                VALUES (%s, %s, %s, %s)
+                INSERT INTO expenses (user_id, category, item, quantity, price, date)
+                VALUES (%s, %s, %s, %s, %s, %s)
             """
-            cursor.execute(insert_query, (category, item, quantity, date))
+            cursor.execute(insert_query, (self.user_id, category, item, quantity, price, date))
             connection.commit()
             cursor.close()
             db.close()
@@ -73,30 +75,23 @@ class ExpenseTableApp(QMainWindow):
             db = DatabaseConnection()
             connection = db.connect()
             cursor = connection.cursor()
-
-            select_query = "SELECT id, category, item, quantity, date FROM expenses ORDER BY id DESC"
-            cursor.execute(select_query)
+            select_query = "SELECT id, item, category, price, quantity, date FROM expenses WHERE user_id = %s ORDER BY id DESC"
+            cursor.execute(select_query, self.user_id)
             records = cursor.fetchall()
 
             self.spendrecords.setRowCount(0)
 
             for row_number, row_data in enumerate(records):
                 self.spendrecords.insertRow(row_number)
-                self.spendrecords.setItem(row_number, 0, QTableWidgetItem(str(row_number + 1)))  # Row number
-                self.spendrecords.setItem(row_number, 1, QTableWidgetItem(row_data[1]))  # category
-                self.spendrecords.setItem(row_number, 2, QTableWidgetItem(row_data[2]))  # item
-                self.spendrecords.setItem(row_number, 3, QTableWidgetItem(str(row_data[3])))  # quantity
-                self.spendrecords.setItem(row_number, 4, QTableWidgetItem(str(row_data[4])))  # date
+                self.spendrecords.setItem(row_number, 0, QTableWidgetItem(row_data[1]))  # item
+                self.spendrecords.setItem(row_number, 1, QTableWidgetItem(row_data[2]))  # category
+                self.spendrecords.setItem(row_number, 2, QTableWidgetItem("Php " + str(row_data[3])))  # price per
+                self.spendrecords.setItem(row_number, 3, QTableWidgetItem(str(row_data[4])))  # quantity
+                self.spendrecords.setItem(row_number, 4, QTableWidgetItem(str(row_data[5]))) # date
+                self.spendrecords.setItem(row_number, 5, QTableWidgetItem("Php " + str(row_data[3] * row_data[4])))
 
             cursor.close()
             db.close()
 
         except Exception as e:
             QMessageBox.critical(self, "Load Error", f"Failed to load entries from database.\n{e}")
-
-#this is a main file
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = ExpenseTableApp()
-    window.show()
-    sys.exit(app.exec())

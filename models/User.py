@@ -40,7 +40,7 @@ class InnerUser:
             print("Database connection closed successfully.")
 
     # Returns a boolean value just like the method before
-    def validateUserLogin(self, username, password):
+    def validateLoginUserId(self, username, password):
         # Create an instance of the database connection handler class
         database = DatabaseConnection()
         # Establish session through the login function
@@ -48,20 +48,23 @@ class InnerUser:
         
         try:
             cursor = database_conn.cursor()
-            sql_query = "SELECT username, password FROM users WHERE username = %s AND password = %s"
+            sql_query = "SELECT username, password FROM users WHERE username = %s AND password = %s"    
             values = (username, password) # tuple value
             cursor.execute(sql_query, values)
-            return True
+            # returns first column result (id) from the users table
+            user_id = cursor.fetchone()
+
+            if user_id:
+                print(user_id[0])
+                print(user_id)
+                return user_id[0]
+            else:
+                return None 
 
         except Exception as error:
             print(f"Error Message: {error}")
-            return False
+            return None
         
         finally:
             database.close()
             print("Database connection closed successfully.")
-
-
-        
-        
-

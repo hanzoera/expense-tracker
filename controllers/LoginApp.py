@@ -3,7 +3,6 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from models.User import InnerUser
-from controllers.ExpenseTableApp import ExpenseTableApp
 
 class Login(QMainWindow):
     def __init__(self):
@@ -28,22 +27,23 @@ class Login(QMainWindow):
         # Create an instance of the user query handler class
         user = InnerUser()
         # Pass onto the method that mainly manages the logic for logging user account
-        is_login_successful = user.validateUserLogin(username, password)
+        user_id = user.validateLoginUserId(username, password)
 
         # Indicates whether the login process was successful or not
-        if is_login_successful:
+        if user_id:
             QMessageBox.information(self, "Login Successful!", "Welcome! Your account was successfully opened.")
             self.usernameInput.clear()
             self.passwordInput.clear()
 
-            self.expense_window = ExpenseTableApp()
+            from controllers.ExpenseTableApp import ExpenseTableApp
+            self.expense_window = ExpenseTableApp(user_id)
             self.expense_window.show()
             self.close()
             # from controllers.ExpenseTableApp import (Done by Juswen)
             # create expense app window object (Done by Juswen)
             # show the expense app window (Done by Juswen)
             # close the login window (Done by Juswen)
-        
+
     def openRegisterWindow(self):
         from controllers.RegisterApp import Register
         self.register_window = Register()
