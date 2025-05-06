@@ -43,7 +43,7 @@ class ExpenseTableApp(QMainWindow):
         table.setItem(self.rowCount, 4, QTableWidgetItem(date))
         self.rowCount += 1
 
-        
+        #Saving the inputs to database
         try:
             db = DatabaseConnection()
             connection = db.connect()
