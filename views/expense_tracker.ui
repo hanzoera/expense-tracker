@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1019</width>
-    <height>594</height>
+    <width>1013</width>
+    <height>622</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,7 +71,7 @@ color: rgb(0, 0, 0);</string>
     </attribute>
     <column>
      <property name="text">
-      <string>Spending No.</string>
+      <string>No.</string>
      </property>
     </column>
     <column>
@@ -91,6 +91,11 @@ color: rgb(0, 0, 0);</string>
     </column>
     <column>
      <property name="text">
+      <string>Price</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Date</string>
      </property>
     </column>
@@ -101,7 +106,7 @@ color: rgb(0, 0, 0);</string>
       <x>10</x>
       <y>120</y>
       <width>381</width>
-      <height>264</height>
+      <height>276</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -347,9 +352,9 @@ border-right: 1px solid gray;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>440</y>
+      <y>420</y>
       <width>381</width>
-      <height>74</height>
+      <height>111</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
@@ -401,6 +406,30 @@ border-right: 1px solid gray;</string>
        </property>
       </widget>
      </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="editEntry">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Yu Gothic Medium</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(80, 91, 100);</string>
+       </property>
+       <property name="text">
+        <string>EDIT</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_4">
@@ -408,8 +437,8 @@ border-right: 1px solid gray;</string>
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>381</width>
-      <height>93</height>
+      <width>417</width>
+      <height>111</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_4">
@@ -510,8 +539,8 @@ border-right: 1px solid gray;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1019</width>
-     <height>21</height>
+     <width>1013</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

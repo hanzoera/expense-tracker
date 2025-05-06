@@ -14,7 +14,7 @@ class InnerUser:
         database = DatabaseConnection()
         # Establish session through the register function
         database_conn = database.connect()
-
+        
         try:
             # Cursor object to run and execute SQL queries for registration
             cursor = database_conn.cursor()
