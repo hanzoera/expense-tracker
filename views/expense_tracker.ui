@@ -354,7 +354,7 @@ border-right: 1px solid gray;</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="0">
-      <widget class="QPushButton" name="curDate_2">
+      <widget class="QPushButton" name="saveEntry">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -378,7 +378,7 @@ border-right: 1px solid gray;</string>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="curDate_3">
+      <widget class="QPushButton" name="clearEntry">
        <property name="maximumSize">
         <size>
          <width>150</width>
