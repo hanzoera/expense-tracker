@@ -1,7 +1,6 @@
 import sys
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
-
 from models.User import InnerUser
 
 class Register(QMainWindow):
@@ -51,3 +50,4 @@ class Register(QMainWindow):
         self.login_window = Login()
         self.login_window.show()
         self.close() # Close the registration window
+

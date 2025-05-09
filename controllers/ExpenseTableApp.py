@@ -83,7 +83,7 @@ class ExpenseTableApp(QMainWindow):
 
 
     # Displays the records in the table.
-    def load_expenses(self):
+    def load_expenses(self): 
         try:
             db = DatabaseConnection()
             connection = db.connect()
@@ -92,6 +92,12 @@ class ExpenseTableApp(QMainWindow):
             cursor.execute(select_query, self.user_id)
             records = cursor.fetchall()
 
+            if not records:
+                QMessageBox.information(self, "No Entries", "No expense records found.")
+                cursor.close()
+                db.close()
+                return
+            
             self.spendrecords.setRowCount(0)
 
             for row_number, row_data in enumerate(records):

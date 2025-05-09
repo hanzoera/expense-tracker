@@ -27,7 +27,8 @@ class Login(QMainWindow):
         # Create an instance of the user query handler class
         user = InnerUser()
         # Pass onto the method that mainly manages the logic for logging user account
-        user_id = user.validateLoginUserId(username, password)
+        # note: this function returns the username of the account
+        user_id = user.validateLogin(username, password)
 
         # Indicates whether the login process was successful or not
         if user_id:
@@ -39,10 +40,6 @@ class Login(QMainWindow):
             self.expense_window = ExpenseTableApp(user_id)
             self.expense_window.show()
             self.close()
-            # from controllers.ExpenseTableApp import (Done by Juswen)
-            # create expense app window object (Done by Juswen)
-            # show the expense app window (Done by Juswen)
-            # close the login window (Done by Juswen)
 
     def openRegisterWindow(self):
         from controllers.RegisterApp import Register
