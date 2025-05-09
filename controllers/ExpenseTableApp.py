@@ -1,6 +1,6 @@
 import sys
 from PyQt6 import uic
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidget, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidget, QTableWidgetItem, QAbstractItemView
 
 from config.DatabaseConnection import DatabaseConnection
 from datetime import datetime
@@ -15,9 +15,12 @@ class ExpenseTableApp(QMainWindow):
         self.curDate.clicked.connect(self.toCurrentDate)
         self.saveEntry.clicked.connect(self.saveEntryFunc)
         self.clearEntry.clicked.connect(self.clearEntryFunc)
+        self.editEntry.setEnabled(False)
+        self.delEntry.setEnabled(False)
 
         self.itemCategory.addItems(["Utilities", "Transportation", "Food & Drinks", "Entertainment", "Shopping", "Others"])
-
+        self.spendrecords.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.spendrecords.itemSelectionChanged.connect(self.on_row_selected)
         self.load_expenses()
 
     def toCurrentDate(self):
@@ -67,6 +70,16 @@ class ExpenseTableApp(QMainWindow):
         self.itemPrice.clear()
         self.itemQuant.clear()
         self.datePurchase.clear()
+
+
+    def on_row_selected(self):
+        selected_items = self.spendrecords.selectedItems()
+        if selected_items:
+            self.editEntry.setEnabled(True)
+            self.delEntry.setEnabled(True)
+        else:
+            self.editEntry.setEnabled(False)
+            self.delEntry.setEnabled(False)
 
 
     # Displays the records in the table.

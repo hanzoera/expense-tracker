@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1013</width>
-    <height>600</height>
+    <width>1023</width>
+    <height>587</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
      <rect>
       <x>410</x>
       <y>20</y>
-      <width>571</width>
+      <width>601</width>
       <height>521</height>
      </rect>
     </property>
@@ -106,7 +106,7 @@ color: rgb(0, 0, 0);</string>
       <x>10</x>
       <y>120</y>
       <width>381</width>
-      <height>276</height>
+      <height>251</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -352,9 +352,9 @@ border-right: 1px solid gray;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>420</y>
+      <y>390</y>
       <width>381</width>
-      <height>111</height>
+      <height>131</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
@@ -382,6 +382,30 @@ border-right: 1px solid gray;</string>
        </property>
       </widget>
      </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="editEntry">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Yu Gothic Medium</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(80, 91, 100);</string>
+       </property>
+       <property name="text">
+        <string>EDIT</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="clearEntry">
        <property name="maximumSize">
@@ -406,8 +430,8 @@ border-right: 1px solid gray;</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="editEntry">
+     <item row="3" column="0">
+      <widget class="QPushButton" name="delEntry">
        <property name="maximumSize">
         <size>
          <width>150</width>
@@ -423,10 +447,10 @@ border-right: 1px solid gray;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(80, 91, 100);</string>
+        <string notr="true">background-color: rgb(109, 63, 57);</string>
        </property>
        <property name="text">
-        <string>EDIT</string>
+        <string>DELETE</string>
        </property>
       </widget>
      </item>
@@ -501,8 +525,8 @@ border-right: 1px solid gray;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1013</width>
-     <height>26</height>
+     <width>1023</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
