@@ -12,6 +12,7 @@ class ExpenseTableApp(QMainWindow):
         self.user_id = user_id
 
         uic.loadUi("views/expense_tracker.ui", self)
+        self.logOut.clicked.connect(self.logOutFunc)
         self.curDate.clicked.connect(self.toCurrentDate)
         self.saveEntry.clicked.connect(self.saveEntryFunc)
         self.clearEntry.clicked.connect(self.clearEntryFunc)
@@ -25,10 +26,28 @@ class ExpenseTableApp(QMainWindow):
         self.spendrecords.itemSelectionChanged.connect(self.on_row_selected)
         self.load_expenses()
 
+    def logOutFunc(self):
+        # clear session data which is the user_id
+        self.user_id = None 
+        
+        # display a confirmation message before proceeding
+        reply = QMessageBox.question(self, "Logout", "Are you sure you want to log out?",
+                                     QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        
+        if reply == QMessageBox.StandardButton.Yes:
+            # close the current window
+            self.close()
+
+            # reopen the login window
+            from controllers.LoginApp import Login
+            self.login_window = Login()
+            self.login_window.show()
+        else:
+            print("Logout canceled.")
+
     def toCurrentDate(self):
         from utils.date_helper import getCurrentQDate
         self.datePurchase.setDate(getCurrentQDate())
-    
 
     # It inserts the inputs that you typed sa database.
     def saveEntryFunc(self):
