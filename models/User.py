@@ -54,7 +54,7 @@ class InnerUser:
         cursor = database_conn.cursor()
         # get id to open own user data accordingly and the password for comparison 
         sql_query = "SELECT id, password FROM users WHERE username = %s"
-        condition_values = username # tuple value with one element (tuple value needed for cursor.execute)
+        condition_values = (username,) # tuple value with one element (tuple value needed for cursor.execute)
         cursor.execute(sql_query, condition_values)
         result = cursor.fetchone()
         # pass individual values into its own variable
