@@ -1,6 +1,5 @@
 import sys
 from PyQt6 import uic
-from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidget, QTableWidgetItem, QAbstractItemView, QDateEdit
 
 from config.DatabaseConnection import DatabaseConnection
@@ -20,7 +19,6 @@ class ExpenseTableApp(QMainWindow):
         self.delEntry.clicked.connect(self.delEntryFunc)
         self.editEntry.setEnabled(False)
         self.delEntry.setEnabled(False)
-
 
         self.itemCategory.addItems(["Utilities", "Transportation", "Food & Drinks", "Entertainment", "Shopping", "Others"])
         self.spendrecords.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
@@ -131,7 +129,7 @@ class ExpenseTableApp(QMainWindow):
         if selected_items:
             row_data = [item.text().replace("Php ", "") for item in selected_items]
             from controllers.EditApp import Edit
-            self.edit_window = Edit(self.user_id, row_data)
+            self.edit_window = Edit(self, self.user_id, row_data)
             self.edit_window.show()
         else:
             QMessageBox.warning(self, "No Selection", "Please select a row to edit.")
