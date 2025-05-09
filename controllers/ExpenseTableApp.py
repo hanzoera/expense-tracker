@@ -17,6 +17,7 @@ class ExpenseTableApp(QMainWindow):
         self.saveEntry.clicked.connect(self.saveEntryFunc)
         self.clearEntry.clicked.connect(self.clearEntryFunc)
         self.editEntry.clicked.connect(self.openEditWindow)
+        self.delEntry.clicked.connect(self.delEntryFunc)
         self.editEntry.setEnabled(False)
         self.delEntry.setEnabled(False)
 
@@ -108,11 +109,15 @@ class ExpenseTableApp(QMainWindow):
 
             for row_number, row_data in enumerate(records):
                 self.spendrecords.insertRow(row_number)
-                self.spendrecords.setItem(row_number, 0, QTableWidgetItem(row_data[1]))  # item
+
+                item = QTableWidgetItem(row_data[1])  # item name
+                item.setData(256, row_data[0])  # store expense ID in Qt.UserRole (256)
+
+                self.spendrecords.setItem(row_number, 0, item)
                 self.spendrecords.setItem(row_number, 1, QTableWidgetItem(row_data[2]))  # category
                 self.spendrecords.setItem(row_number, 2, QTableWidgetItem("Php " + str(row_data[3])))  # price per
                 self.spendrecords.setItem(row_number, 3, QTableWidgetItem(str(row_data[4])))  # quantity
-                self.spendrecords.setItem(row_number, 4, QTableWidgetItem(str(row_data[5]))) # date
+                self.spendrecords.setItem(row_number, 4, QTableWidgetItem(str(row_data[5])))  # date
                 self.spendrecords.setItem(row_number, 5, QTableWidgetItem("Php " + str(row_data[3] * row_data[4])))
 
             cursor.close()
@@ -130,3 +135,33 @@ class ExpenseTableApp(QMainWindow):
             self.edit_window.show()
         else:
             QMessageBox.warning(self, "No Selection", "Please select a row to edit.")
+
+    def delEntryFunc(self):
+        selected_items = self.spendrecords.selectedItems()
+        if not selected_items:
+            QMessageBox.warning(self, "Selection Error", "Please select a row to delete.")
+            return
+
+        reply = QMessageBox.question(self, "Confirm Deletion", "Are you sure you want to delete this record?",
+                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        if reply == QMessageBox.StandardButton.Yes:
+            try:
+                item_with_id = selected_items[0]  # Any cell in the row is fine
+                expense_id = item_with_id.data(256)  # Get the ID we stored earlier
+
+                db = DatabaseConnection()
+                connection = db.connect()
+                cursor = connection.cursor()
+                delete_query = "DELETE FROM expenses WHERE id = %s AND user_id = %s"
+                cursor.execute(delete_query, (expense_id, self.user_id))
+                connection.commit()
+                cursor.close()
+                db.close()
+
+                self.load_expenses()
+                QMessageBox.information(self, "Deleted", "Expense entry deleted successfully.")
+                self.editEntry.setEnabled(False)
+                self.delEntry.setEnabled(False)
+
+            except Exception as e:
+                QMessageBox.critical(self, "Deletion Error", f"Failed to delete entry.\n{e}")

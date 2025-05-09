@@ -22,6 +22,8 @@ class Edit(QMainWindow):
         self.itemPrice.setText(row_data[2])       # price (no Php prefix now)
         self.itemQuant.setText(row_data[3])       # quantity
         self.datePurchase.setDate(stringToQDate(row_data[4]))    # date
+        self.cancelChanges.clicked.connect(self.closeCancelWindow)
+        self.saveChanges.clicked.connect(self.saveChangeFunc)
         
         self.curDate.clicked.connect(self.toCurrentDate)
         # self.saveChanges.clicked.connect(self.saveChanges)
@@ -30,3 +32,9 @@ class Edit(QMainWindow):
     def toCurrentDate(self):
         self.datePurchase.setDate(getCurrentQDate())
 
+    def closeCancelWindow(self):
+        self.close()
+    
+    def saveChangeFunc(self):
+        print("Test")
+        # KULANG PA HERE, LOVE YOU
