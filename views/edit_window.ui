@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>446</width>
-    <height>413</height>
+    <width>449</width>
+    <height>428</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,39 +23,14 @@
    <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>290</y>
-      <width>431</width>
-      <height>71</height>
+      <x>20</x>
+      <y>300</y>
+      <width>411</width>
+      <height>61</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
-     <item row="2" column="1">
-      <widget class="QPushButton" name="cancelChanges">
-       <property name="maximumSize">
-        <size>
-         <width>150</width>
-         <height>25</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Yu Gothic Medium</family>
-         <pointsize>8</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(109, 63, 57);
-color: rgb(211, 211, 211);</string>
-       </property>
-       <property name="text">
-        <string>CANCEL</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
+     <item row="0" column="0">
       <widget class="QPushButton" name="saveChanges">
        <property name="maximumSize">
         <size>
@@ -80,15 +55,40 @@ color: rgb(211, 211, 211);</string>
        </property>
       </widget>
      </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="cancelChanges">
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Yu Gothic Medium</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(109, 63, 57);
+color: rgb(211, 211, 211);</string>
+       </property>
+       <property name="text">
+        <string>CANCEL</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>20</x>
       <y>20</y>
-      <width>431</width>
-      <height>241</height>
+      <width>411</width>
+      <height>276</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -96,13 +96,13 @@ color: rgb(211, 211, 211);</string>
       <number>20</number>
      </property>
      <property name="leftMargin">
-      <number>30</number>
+      <number>10</number>
      </property>
      <property name="topMargin">
       <number>15</number>
      </property>
      <property name="rightMargin">
-      <number>30</number>
+      <number>10</number>
      </property>
      <property name="bottomMargin">
       <number>15</number>
@@ -309,7 +309,7 @@ border-right: 1px solid gray;</string>
       </widget>
      </item>
      <item row="8" column="1">
-      <widget class="QLineEdit" name="datePurchase">
+      <widget class="QDateEdit" name="datePurchase">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(70, 81, 90);
 border: 1px solid transparent;
@@ -320,41 +320,35 @@ border-right: 1px solid gray;</string>
        </property>
       </widget>
      </item>
-    </layout>
-   </widget>
-   <widget class="QPushButton" name="curDate">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>260</y>
-      <width>100</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>100</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <family>Yu Gothic Medium</family>
-      <pointsize>8</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(211, 211, 211);
+     <item row="9" column="1">
+      <widget class="QPushButton" name="curDate">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Yu Gothic Medium</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(211, 211, 211);
 background-color: rgb(80, 91, 100);</string>
-    </property>
-    <property name="text">
-     <string>CURRENT DATE</string>
-    </property>
+       </property>
+       <property name="text">
+        <string>CURRENT DATE</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -362,7 +356,7 @@ background-color: rgb(80, 91, 100);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>446</width>
+     <width>449</width>
      <height>26</height>
     </rect>
    </property>

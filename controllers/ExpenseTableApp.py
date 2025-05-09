@@ -1,13 +1,14 @@
 import sys
 from PyQt6 import uic
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidget, QTableWidgetItem, QAbstractItemView
+from PyQt6.QtCore import QDate
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidget, QTableWidgetItem, QAbstractItemView, QDateEdit
 
 from config.DatabaseConnection import DatabaseConnection
-from datetime import datetime
 
 class ExpenseTableApp(QMainWindow):
     def __init__(self, user_id):
         super().__init__()
+
         # assign the logged-in user's ID as an instance variable to be use for SQL queries
         self.user_id = user_id
 
@@ -15,8 +16,10 @@ class ExpenseTableApp(QMainWindow):
         self.curDate.clicked.connect(self.toCurrentDate)
         self.saveEntry.clicked.connect(self.saveEntryFunc)
         self.clearEntry.clicked.connect(self.clearEntryFunc)
+        self.editEntry.clicked.connect(self.openEditWindow)
         self.editEntry.setEnabled(False)
         self.delEntry.setEnabled(False)
+
 
         self.itemCategory.addItems(["Utilities", "Transportation", "Food & Drinks", "Entertainment", "Shopping", "Others"])
         self.spendrecords.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
@@ -24,8 +27,8 @@ class ExpenseTableApp(QMainWindow):
         self.load_expenses()
 
     def toCurrentDate(self):
-        current_date = datetime.now().strftime("%Y-%m-%d")
-        self.datePurchase.setText(current_date)
+        from utils.date_helper import getCurrentQDate
+        self.datePurchase.setDate(getCurrentQDate())
     
 
     # It inserts the inputs that you typed sa database.
@@ -34,7 +37,10 @@ class ExpenseTableApp(QMainWindow):
         category = self.itemCategory.currentText()
         price = self.itemPrice.text()
         quantity = self.itemQuant.text()
-        date = self.datePurchase.text()
+        date = self.datePurchase.date()
+
+        # Convert the QDate object to a string in the format "YYYY-MM-DD"
+        date_str = date.toString("yyyy-MM-dd")
 
         #Input Validation For Inputs or Smth.
         if not item or not price or not quantity or not date:
@@ -50,7 +56,7 @@ class ExpenseTableApp(QMainWindow):
                 INSERT INTO expenses (user_id, category, item, quantity, price, date)
                 VALUES (%s, %s, %s, %s, %s, %s)
             """
-            cursor.execute(insert_query, (self.user_id, category, item, quantity, price, date))
+            cursor.execute(insert_query, (self.user_id, category, item, quantity, price, date_str))
             connection.commit()
             cursor.close()
             db.close()
@@ -83,7 +89,7 @@ class ExpenseTableApp(QMainWindow):
 
 
     # Displays the records in the table.
-    def load_expenses(self): 
+    def load_expenses(self):
         try:
             db = DatabaseConnection()
             connection = db.connect()
@@ -111,6 +117,16 @@ class ExpenseTableApp(QMainWindow):
 
             cursor.close()
             db.close()
-
         except Exception as e:
             QMessageBox.critical(self, "Load Error", f"Failed to load entries from database.\n{e}")
+
+    def openEditWindow(self):
+        selected_items = self.spendrecords.selectedItems()
+        
+        if selected_items:
+            row_data = [item.text().replace("Php ", "") for item in selected_items]
+            from controllers.EditApp import Edit
+            self.edit_window = Edit(self.user_id, row_data)
+            self.edit_window.show()
+        else:
+            QMessageBox.warning(self, "No Selection", "Please select a row to edit.")

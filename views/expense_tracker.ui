@@ -106,7 +106,7 @@ color: rgb(0, 0, 0);</string>
       <x>10</x>
       <y>120</y>
       <width>381</width>
-      <height>251</height>
+      <height>276</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -310,18 +310,6 @@ border-right: 1px solid gray;</string>
        </property>
       </widget>
      </item>
-     <item row="8" column="1">
-      <widget class="QLineEdit" name="datePurchase">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(70, 81, 90);
-border: 1px solid transparent;
-border-left: 1px solid rgba(24,28,31,255);
-border-top: 1px solid rgba(24,28,31,255);
-border-bottom: 1px solid gray;
-border-right: 1px solid gray;</string>
-       </property>
-      </widget>
-     </item>
      <item row="9" column="1">
       <widget class="QPushButton" name="curDate">
        <property name="maximumSize">
@@ -346,15 +334,27 @@ border-right: 1px solid gray;</string>
        </property>
       </widget>
      </item>
+     <item row="8" column="1">
+      <widget class="QDateEdit" name="datePurchase">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(70, 81, 90);
+border: 1px solid transparent;
+border-left: 1px solid rgba(24,28,31,255);
+border-top: 1px solid rgba(24,28,31,255);
+border-bottom: 1px solid gray;
+border-right: 1px solid gray;</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>390</y>
+      <y>400</y>
       <width>381</width>
-      <height>131</height>
+      <height>121</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
@@ -526,7 +526,7 @@ border-right: 1px solid gray;</string>
      <x>0</x>
      <y>0</y>
      <width>1023</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
